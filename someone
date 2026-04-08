@@ -1,0 +1,28 @@
+git diff origin/main
+
+diff --git a/README.md b/README.md
+index 8e9c318..c3743a7 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+ # Euclid
+
+-## This is a test repository to show how to use **Git** and **GitHub** for [programmareinpython.it](https://www.programmareinpython.it/)
++## This is a test repository to show how to use Git and GitHub for [programmareinpython.it](https://www.programmareinpython.it/)
+
+Updating 6c082e8..03f0ce7
+Fast-forward
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+ commit 03f0ce7a6574346ed373f09992c33503b800d1cd (HEAD -> main, origin/main)
+Author: fran-00 <76666632+fran-00@users.noreply.github.com>
+Date:   Wed Apr 12 07:48:32 2023 +0200
+
+    Update Git and GitHub names with bold formatting
+
+commit 6c082e820e889dcc12275ac80ca25d6d646f7d3b
+Author: fran-00 <76666632+fran-00@users.noreply.github.com>
+Date:   Wed Apr 12 07:22:50 2023 +0200
+
+    Create README.nd
