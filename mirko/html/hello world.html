@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riassunto da URL</title>
+</head>
+<body>
+    <h1>Riassumi il contenuto di un sito</h1>
+    <p>Inserisci l'URL di una pagina web: il browser tenterà di leggere il testo e generare un breve riassunto (fino a ~400 parole).</p>
+
+    <div>
+        <label for="urlsInput">URL (separati da virgola):</label><br>
+        <textarea id="urlsInput" rows="4" style="width: 100%; max-width: 600px; padding: 8px;" placeholder="https://example.com, https://example.org"></textarea>
+    </div>
+
+    <div style="margin-top: 10px;">
+        <button id="fetchBtn" style="padding: 10px 20px;">Recupera da siti</button>
+    </div>
+
+    <div id="aiOutput" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; max-width: 700px; background: #f9f9f9; font-family: Arial, sans-serif; white-space: pre-wrap;"></div>
+    <div id="summaryOutput" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; max-width: 700px; background: #fff; font-family: Arial, sans-serif; white-space: pre-wrap;"></div>
+
+    <script>
+        const btn = document.getElementById('fetchBtn');
+        const output = document.getElementById('aiOutput');
+        const summaryOutput = document.getElementById('summaryOutput');
+        const urlsInput = document.getElementById('urlsInput');
+
+        async function fetchText(url) {
+            const tryFetch = async (fetchUrl) => {
+                const res = await fetch(fetchUrl);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return await res.text();
+            };
+
+            try {
+                return await tryFetch(url);
+            } catch (err) {
+               
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                try {
+                    return await tryFetch(proxyUrl);
+                } catch (proxyErr) {
+                    throw new Error(`Impossibile recuperare ${url}: ${err.message}. (tentativo proxy fallito: ${proxyErr.message})`);
+                }
+            }
+        }
+
+        function stripHtml(html) {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            return doc.body.textContent || '';
+        }
+
+        function summarizeText(text, maxWords = 400) {
+            const words = text.trim().split(/\s+/);
+            if (words.length <= maxWords) {
+                return text.trim();
+            }
+
+            
+            const head = words.slice(0, Math.floor(maxWords * 0.4));
+            const middle = words.slice(Math.floor(words.length / 2), Math.floor(words.length / 2) + Math.floor(maxWords * 0.2));
+            const tail = words.slice(-Math.floor(maxWords * 0.4));
+
+            return [...head, '...', ...middle, '...', ...tail].join(' ').trim();
+        }
+                    
+        btn.addEventListener('click', async () => {
+            const raw = urlsInput.value.trim();
+            if (!raw) {
+                output.textContent = 'Inserisci almeno un URL.';
+                return;
+            }
+
+            const urls = raw.split(',').map(u => u.trim()).filter(Boolean);
+            if (urls.length === 0) {
+                output.textContent = 'Inserisci almeno un URL valido.';
+                return;
+            }
+
+            output.textContent = 'Recupero in corso...\n';
+            summaryOutput.textContent = '';
+
+            try {
+                const html = await fetchText(urls[0]);
+                const text = stripHtml(html);
+                const summary = summarizeText(text, 400);
+
+                output.textContent = `Testo estratto (prime 5000 caratteri):\n${text.slice(0, 5000)}\n...`;
+                summaryOutput.textContent = `Riassunto (~400 parole):\n${summary}`;
+            } catch (err) {
+                output.textContent = err.message;
+            }
+        });
+    </script>
+</body>
+</html>

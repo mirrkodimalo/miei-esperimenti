@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><f1>halla wakbar</f1></title>
+     <f1>ciao</f1>
+     <f2>come</f2>
+     <f3>stai</f3>
+     <f4>te?</f4>   
+     
+     <button onclick="alert('marioRossi- ' + m.mostraNomeCompleto())">Cliccami</button>
+    
+    
+     <button onclick="alert('giuseppeVerdi- ' + p2.mostraNomeCompleto())">Cliccami</button>
+    
+    
+     <button onclick="alert('marioRossi- ' + marco.calcolaCodiceFiscale())">Cliccami</button>
+    
+    
+     <button onclick="alert('giuseppeVerdi- ' + magno.calcolaCodiceFiscale())">Cliccami</button>
+    
+
+ <script>
+
+function persona() { 
+	this.nome = "";
+	this.cognome = "";
+	this.indirizzo = "";
+	this.email = "";
+	this.mostraNomeCompleto = function() {
+        return this.nome + " " + this.cognome + " " + this.indirizzo + " " + this.email;
+    };
+	this.calcolaCodiceFiscale = function() {
+        // Semplice calcolo del codice fiscale (non completo)
+        const nomePart = this.nome.substring(0, 3).toUpperCase();
+        const cognomePart = this.cognome.substring(0, 3).toUpperCase();
+        const indirizzoPart = this.indirizzo.replace(/\s/g, '').substring(0, 3).toUpperCase();
+        return cognomePart + nomePart + indirizzoPart;
+    };
+ }
+
+ 
+var m = new persona();
+m.nome = "Andrea";
+m.cognome = "Rossi";
+m.indirizzo = "Via Garibaldi, 50 - Roma";
+m.email = "mario.rossi@mail.com"
+
+//alert(m.mostraNomeCompleto());
+//alert(m.calcolaCodiceFiscale()); 
+
+var p2 = new persona();
+p2.nome = "Alessandro";
+p2.cognome = "Gervasoni";
+p2.indirizzo = "Via Verdi, 100 - Milano";
+p2.email = "alessandro.gervasoni@mail.com";
+
+
+//alert(p2.mostraNomeCompleto());
+//alert(p2.calcolaCodiceFiscale()); 
+
+var marco = new persona();
+marco.nome = "Marco";
+marco.cognome = "Rossi";
+marco.indirizzo = "Via antonelli, 76 - firenze";
+marco.email = "marco.rossi@mail.com";
+
+
+var magno = new persona();
+magno.nome = "luciano";
+magno.cognome = "mangoli";
+magno.indirizzo = "Via santa maria, 23 - napoli";
+magno.email = "luciano.mangoli@mail.com";
+
+/*
+marioRossi.nome = "Mario";
+marioRossi.cognome = "Rossi";
+var giuseppeVerdi = new persona();
+giuseppeVerdi.nome = "Giuseppe";
+giuseppeVerdi.cognome = "Verdi";
+console.log(marioRossi.mostraNomeCompleto()); // Output: Mario Rossi
+console.log(giuseppeVerdi.mostraNomeCompleto()); // Output: Giuseppe Verdi
+console.log(marioRossi.calcolaCodiceFiscale()); // Output: ROSMARVIA
+console.log(giuseppeVerdi.calcolaCodiceFiscale()); // Output: VERGIUVIA
+ var marioRossi = new persona("Mario", "Rossi");
+var giuseppeVerdi = new persona("Giuseppe", "Verdi");
+console.log(marioRossi.mostraNomeCompleto()); // Output: Mario Rossi
+console.log(giuseppeVerdi.mostraNomeCompleto()); // Output: Giuseppe Verdi
+console.log(marioRossi.calcolaCodiceFiscale()); // Output: ROSMARVIA
+console.log(giuseppeVerdi.calcolaCodiceFiscale()); // Output: VERGIUVIA 
+var marioRossi = persona();
+marioRossi.nome = "Mario";
+marioRossi.cognome = "Rossi";
+var giuseppeVerdi = persona();
+giuseppeVerdi.nome = "Giuseppe";
+giuseppeVerdi.cognome = "Verdi";
+console.log(marioRossi.mostraNomeCompleto()); // Output: Mario Rossi
+console.log(giuseppeVerdi.mostraNomeCompleto()); // Output: Giuseppe Verdi
+console.log(marioRossi.calcolaCodiceFiscale()); // Output: ROSMARVIA
+console.log(giuseppeVerdi.calcolaCodiceFiscale()); // Output: VERGIUVIA
+function Persona() {
+  args = Array.from(arguments);
+  this.nome = args[0] || "";
+  this.cognome = args[1] || "";
+  this.indirizzo = args[2] || "";
+  this.email = args[3] || "";
+  this.mostraNomeCompleto = function() {
+    return this.nome + " " + this.cognome;
+  };
+  this.calcolaCodiceFiscale = function() {
+    const nomePart = this.nome.substring(0, 3).toUpperCase();
+    const cognomePart = this.cognome.substring(0, 3).toUpperCase();
+    const indirizzoPart = this.indirizzo.replace(/\s/g, '').substring(0, 3).toUpperCase();
+    return cognomePart + nomePart + indirizzoPart;
+  };
+}
+ 
+var marioRossi = new Persona("Mario", "Rossi", "Via Garibaldi, 50 - Roma", "mario.rossi@html.it");
+var giuseppeVerdi = new Persona("Giuseppe", "Verdi", "Via Verdi, 100 - Milano", "giuseppe.verdi@html.it");
+console.log(marioRossi.mostraNomeCompleto()); // Output: Mario Rossi
+console.log(giuseppeVerdi.mostraNomeCompleto()); // Output: Giuseppe Verdi
+console.log(marioRossi.calcolaCodiceFiscale()); // Output: ROSMARVIA
+console.log(giuseppeVerdi.calcolaCodiceFiscale()); // Output: VERGIUVIA
+*/
+
+
+
+ </script>
+</head>
+<body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabella di esempio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: blue;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tabella di esempio</h1>
+  <table>
+    <colgroup id="a" span="3"></colgroup>
+    <colgroup id="a">
+      <col id="b1">
+      <col id="b2" span="2">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>tot di persone che usano gli strumente e quali</th><th>pianoforte</th><th>tamburo</th><th>chitarra</th><th>flauto</th><th>tromba</th><th>numero di si</th><th>numero di no</th>
+    </thead>
+    <tbody>
+      <tr><td>marta</td><td>si</td><td>si</td><td>no</td><td>no</td><td>no</td><td>2</td><td>3</td></tr>
+      <tr><td>paolo</td><td>no</td><td>no</td><td>si</td><td>si</td><td>no</td><td>2</td><td>3</td></tr>
+      <tr><td>giulia</td><td>si</td><td>no</td><td>no</td><td>si</td><td>no</td><td>2</td><td>3</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

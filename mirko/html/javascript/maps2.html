@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Navigatore Interattivo</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        #map { height: 500px; width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .controls { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px;
+        }
+        button { 
+            flex: 1;
+            padding: 12px; 
+            font-size: 15px; 
+            font-weight: 600;
+            cursor: pointer; 
+            border: 2px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        button.active { background: #007bff; color: white; }
+        .istruzioni { margin-bottom: 10px; font-size: 14px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="istruzioni">Trascina i quadratini sulla mappa per cambiare partenza o destinazione.</div>
+    
+    <div class="controls">
+        <button id="btn-car" class="active" onclick="cambiaModalita('car')">In Macchina</button>
+        <button id="btn-walk" onclick="cambiaModalita('foot')">A Piedi</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+    <script>
+        // Coordinate iniziali
+        var latA = 45.4642, lngA = 9.1900;
+        var latB = 45.4705, lngB = 9.1793;
+
+        var map = L.map('map').setView([45.467, 9.185], 14);
+        var attualeProfilo = 'car';
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Creiamo il controllo routing
+        var control = L.Routing.control({
+            waypoints: [
+                L.latLng(latA, lngA),
+                L.latLng(latB, lngB)
+            ],
+            router: L.Routing.osrmv1({
+                serviceUrl: 'https://router.project-osrm.org/route/v1',
+                profile: attualeProfilo
+            }),
+            // Abilitiamo il trascinamento dei punti
+            plan: L.Routing.plan([
+                L.latLng(latA, lngA),
+                L.latLng(latB, lngB)
+            ], {
+                draggableWaypoints: true,
+                addWaypoints: false // Evita di creare punti intermedi cliccando sulla linea
+            }),
+            lineOptions: {
+                styles: [{ color: '#007bff', opacity: 0.8, weight: 6 }]
+            },
+            language: 'it'
+        }).addTo(map);
+
+        function cambiaModalita(profilo) {
+            attualeProfilo = profilo;
+            
+            // Aggiorna il profilo del router
+            control.getRouter().options.profile = profilo;
+            
+            // Cambia colore alla linea per feedback visivo
+            control.route({
+                styles: [{ color: profilo === 'car' ? '#007bff' : '#28a745', opacity: 0.8, weight: 6 }]
+            });
+
+            // Aggiorna i pulsanti
+            document.getElementById('btn-car').className = (profilo === 'car' ? 'active' : '');
+            document.getElementById('btn-walk').className = (profilo === 'foot' ? 'active' : '');
+        }
+    </script>
+
+</body>
+</html>

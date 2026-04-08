@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pagina d'esempio</title>
+	</head>
+	<body>
+		<div>
+			<h1>Titolo</h1>
+			<p>Questo &egrave; un paragrafo</p>
+			<img src="img.jpg" alt="Immagine">
+		</div>
+	</body>
+</html>
+
+<script>
+// definisce la funzione callback
+function clickOnTest(event){
+	console.log('Click su test');
+}
+// ottiene l'elemento 'test'
+var test = document.getElementById('test');
+// associa l'evento click alla callback
+test.addEventListener('click', clickOnTest);
+var imgList = document.getElementsByTagName("img");
+for(var i=0; i < imgList.length; i++){
+	if (!imgList[i].hasAttribute("src"))
+		imgList[i].setAttribute("src", "default.png");
+}
+var imgList = document.getElementsByTagName("img");
+for(var i=0; i < imgList.length; i++){
+	if (!imgList[i].src)
+		imgList[i].src = "default.png";
+}
+var img = document.getElementById("miaImmagine");
+img.miaProprieta = "nuovo valore";
+img.getAttribute("src");
+img.getAttribute("SRC");
+<img id="miaImmagine" src="default.png" />
+var img = document.getElementById("miaImmagine");
+console.log(img.src);                   //"https://www.html.it/default.png"
+console.log(img.getAttribute("src"));   //"default.png"
+var div = document.getElementById("mainDiv");
+for (var i = 0; i < div.childNodes.length; i++) {
+	console.log(div.childNodes[i].innerHTML);
+}
+var me = document.getElementById("mainDiv");
+var allSiblings = me.parentNode.childNodes;
+var mySiblings = [];
+for (i = 0; i < allSiblings.length; i++) {
+	if (allSiblings[i] !== me) {
+		mySiblings.push(allSiblings[i]);
+	}
+}
+var me = document.getElementById("mainDiv");
+var allSiblings = me.parentNode.childNodes;
+var mySiblings = [];
+[].forEach.call(allSiblings, function(el) {
+	if (el !== me) mySiblings.push(el);
+});
+var mainDiv = document.getElementById("mainDiv");
+var img = document.createElement("img");
+var srcAttr = document.createAttribute("src");
+srcAttr.value = "default.png";
+img.setAttributeNode(srcAttr);
+mainDiv.appendChild(img);
+document.body.insertBefore(img, mainDiv);
+document.body.insertBefore(img, mainDiv.nextSibling);
+mainDiv.removeChild(mainDiv.firstChild());
+<a href="#" id="test">test</a>
+// definisce la funzione callback
+function clickOnTest(event){
+	console.log('Click su test');
+}
+// ottiene l'elemento 'test'
+var test = document.getElementById('test');
+// associa l'evento click alla callback
+test.addEventListener('click', clickOnTest);
+test.addEventListener('click', function(event) { 
+	console.log('Click su test');
+});
+test.removeEventListener('click', clickOnTest);
+<a href="#" onclick="alert('ciao')">Link</a>
+Oggetto.evento = handler;
+document.images[0].onload = alert('Immagine caricata');
+var buttons = document.getElementsByTagName("button");
+var handler = function() { console.log("Clic..."); };
+for(var i = 0; i < buttons.length; i++) {
+	buttons[i].addEventListener("click", handler);
+}
+var buttons = document.getElementsByTagName("button");
+var handler = function() { console.log("Clic su " + this.innerHTML); };
+for(var i = 0; i < buttons.length; i++) {
+	buttons[i].addEventListener("click", handler);
+}
+var handler = function(e) { console.log("Clic su " + e.target.innerHTML); };
+var button = document.getElementById("btnClicca");
+var handler = function(e) { console.log("Evento: " + e.type); };
+button.addEventListener("click", handler);
+<div id="mainDiv">
+	<p id="paragrafo1">Clicca su questo paragrafo</p>
+	<p id="paragrafo2">Altro paragrafo</p>
+</div>
+var myDiv = document.getElementById("mainDiv");
+var myParagrafo = document.getElementById("paragrafo1");
+var handler = function() { console.log(this.id)};
+myDiv.addEventListener("click", handler);
+myParagrafo.addEventListener("click", handler);
+myDiv.addEventListener("click", handler, true);
+var handler = function(e) {
+	console.log(this.id);
+	e.stopPropagation();
+};
+myParagrafo.addEventListener("click", handler);
+<a id="link" href="http://www.html.it">HTML.it</a>
+var link = document.getElementyById("link");
+link.addEventListener("click", function() {alert("Stai lasciando questa pagina...");});
+link.addEventListener("click", function(e) {
+	if (!confirm("Stai lasciando questa pagina. Vuoi procedere?")) {
+      	e.preventDefault();
+	}
+});
+<img id="img" src="miaImmagine.jpg" onload="avvisa()" />
+function avvisa() {
+	alert("Immagine caricata!");
+}
+<img id="img" src="miaImmagine.jpg" onload="avvisa()" />
+;
+ onload="inizializza()"
+ window.addEventListener("load", inizializza);
+window.onscroll = function() {
+  console.log(window.pageXOffset + "," + window.pageYOffset);
+};
+window.onresize = function() {
+  console.log(window.innerWidth + "," + window.innerHeight);
+};
+var myParagrafo = document.getElementById("paragrafo");
+myParagrafo.ondblclick = function(e) {
+	e.target.innerHTML = "Hai fatto doppio click sul paragrafo!";
+};
+</script>
+<p id="paragrafo">Clicca su questo paragrafo</p>
+<style>
+.overClass {font-weight: bold;   color: red;}
+.outClass  {font-weight: normal; color: black;}
+</style>
+<script>
+var myParagrafo = document.getElementById("paragrafo");
+myParagrafo.onmouseover = function(e) { e.target.className = "overClass"; };
+myParagrafo.onmouseout  = function(e) { e.target.className = "outClass";  };
+</script>
+<p id="paragrafo">Passa il mouse su questo paragrafo</p>
+var myParagrafo = document.getElementById("paragrafo");
+myParagrafo.onmousedown = function(e) {
+	switch(e.button) {
+		case 0:
+			console.log("Hai cliccato con il pulsante sinistro");
+			break;
+		case 1:
+			console.log("Hai cliccato con il pulsante centrale");
+			break;
+		case 2:
+			console.log("Hai cliccato con il pulsante destro");
+			break;
+	}
+};
+<div id="mainDiv">
+	<img id="img" src="miaImmagine.jpg" />
+	<div id="otherDiv">
+		<p>Questo è un paragrafo</p>
+	</div>
+</div>
+<script 
+document.onmousemove = function(e) {
+  console.log("Posizione rispetto alla finestra: " + e.clientX + ", " + e.clientY);
+  console.log("Posizione rispetto alla pagina: " + e.pageX + ", " + e.pageY);
+};
+myParagrafo.onmouseleave = function(e) { 
+	console.log("Il cursore si trova ora sull'elemento " + e.relatedTarget.id);
+};
+</script>  
+myParagrafo.onmouseleave = function(e) { 
+	console.log("Il cursore si trova ora sull'elemento " + e.relatedTarget.id);
+};
+myParagrafo.oncontextmenu = function(e) { 
+	var myMenu = document.getElementById("menu");
+	myMenu.style.position = "absolute";
+	myMenu.style.left = e.pageX + "px";
+	myMenu.style.top = e.pageY + "px";
+	myMenu.style.visibility = "visible";
+	e.preventDefault();
+};
+<img id="miaImmagine" src="images/img.jpg" draggable="true" ondragstart="drag(event)" />
+myParagrafo.ondragstart = function(e) {
+    e.dataTransfer.setData("text/plain", "Questo è il testo che viene trascinato");
+};
+var img = document.getElementById("miaImmagine");  
+img.ondragstart = function(e) {
+	e.dataTransfer.setData("text", e.target.id);
+}
+var divTarget = document.getElementById("divTarget");  
+divTarget.ondragover = function(e) {
+	e.target.className = "overClass";
+	e.preventDefault();
+}
+    divTarget.ondrop = function(e) {   
+	var data = e.dataTransfer.getData("text");
+	e.target.appendChild(document.getElementById(data));
+}
+
+divTarget.ondragleave = function(e) {
+    e.target.className = "";
+}
+var txtInput = document.getElementById("txtInput");  
+txtInput.onkeypress = function(e) {
+	if (e.target.value.length >= 10) e.preventDefault();
+}
+txtInput.onkeypress = function(e) {   
+	var charCode = e.which;
+	if (charCode < 48 || charCode > 57) e.preventDefault();
+}
+txtInput.onkeypress = function(e) {   
+	var charCode = e.which;
+	var char;
+	if (charCode != 0) {
+		char = String.fromCharCode(charCode);
+		e.target.value = e.target.value + char.toUpperCase();
+		e.preventDefault();
+	}
+}
+txtInput.onkeydown = function(e) {
+	if (e.keyCode == 68 && e.ctrlKey) {
+		e.target.value = "";
+		e.preventDefault();
+	}
+}
+// mutationManager è una funzione di callback
+// che utilizzeremo per sfruttare i dati acquisiti
+// dall'observer
+var mutationManager = function(mutationRecords) {
+	// ...
+};
+var observer = new MutationObserver(mutationManager);
+var div = document.getElementById("myDiv");  
+observer.observe(div, { childList: true, attributes: true });
+var mutationManager = function(mutationRecords) { 
+	var i;
+	for(i=0; i < mutationRecords.length; i++) {
+		if (mutationRecords[i].type == "childList") {
+			console.log("Sono stati aggiunti " + mutationRecords[i].addedNodes.length + " elementi.");
+		}
+	}
+};
+observer.disconnect()
+console.log(document.forms.length);
+var myForm = document.forms[0];
+<form id="myForm">
+	<!-- ... -->
+</form>
+var myForm = document.getElementById("myForm");
+
+<form name="myForm">
+	
+</form>
+var myForm = document.forms.myForm;
+
+var myForm = document.getElementsByName("myForm")[0];
+var primoControllo = document.forms.myForm[0];
+var primoControllo = document.forms.myForm.elements[0];
+<form name="myForm">
+<p><label>Nome:    <input type="text" name="txtNome"/></label></p>
+<p><label>Cognome: <input type="text" name="txtCognome"/></label></p>
+</form>
+var myForm     = document.forms.myForm;
+var txtNome    = myForm.txtNome;
+var txtCognome = myForm.txtCognome;
+<input type="text" id="nome" name="txtNome"/>
+var txtNome = document.getElementById("nome");
+txtNome = Mario
+var selIndex = document.forms.MyForm.selProvincia.selectedIndex;
+var selItem; 
+if (selIndex > -1) {
+	selItem = document.forms.MyForm.selProvincia.options[selIndex];
+	console.log(selItem.text);
+}
+<select name="selProvincia" multiple="multiple">
+	<option value="RM">Roma</option>
+	<option value="NA">Napoli</option>
+	<option value="TO">Torino</option>
+	<option value="MI">Milano</option>
+</select>
+var options = document.forms.MyForm.selProvincia.options;
+var selectedOptions = [];
+for (var i = 0; i < options.length; i++) {
+	if (options[i].selected) selectedOptions.push(options[i].value);
+}
+if (!utente.cittadinanzaItaliana) { 
+	document.forms.myForm.txtNazionalita.style.visibility = "visible";
+} else { 
+	document.forms.myForm.txtNazionalita.style.visibility = "hidden";
+}
+document.forms.myForm.selProvincia.selectedIndex = 2;
+var txtNome = document.forms.MyForm.txtNome;
+txtNome.addEventListener("blur", function(e) {
+	var messaggio = "";
+	if (!e.target.validity.valid) {
+		if (e.target.validity.tooLong)
+			messaggio = "Superato il numero massimo di caratteri consentito! "; 
+		if (e.target.validity.valueMissing)
+			messaggio = messaggio + "L'inserimento di un valore è obbligatorio! ";
+		e.target.setCustomValidity(messaggio);
+	}
+});
+<input type="text" required />
+var txtNome = document.forms.MyForm.txtNome;
+txtNome.addEventListener("blur", function(e) {
+	var messaggio = "";
+	if (!e.target.validity.valid) {
+		if (e.target.validity.tooLong)
+			messaggio = "Superato il numero massimo di caratteri consentito! "; 
+		if (e.target.validity.valueMissing)
+			messaggio = messaggio + "L'inserimento di un valore è obbligatorio! ";
+		e.target.setCustomValidity(messaggio);
+	}
+});
+var txtPassword1 = document.forms.MyForm.txtPassword1;
+var txtPassword2 = document.forms.MyForm.txtPassword2;
+var checkPassword = function() {
+	if (txtPassword1.value != txtPassword2.value) {
+		txtPassword1.setCustomValidity("Le password non corrispondono!");
+	} else {
+		txtPassword1.setCustomValidity("");
+	}
+}
+txtPassword1.addEventListener("change", checkPassword);
+txtPassword2.addEventListener("change", checkPassword);
+<form novalidate> 
+	... 
+</form>
+document.forms.myForm.addEventListener('submit', function(e) {
+	// ...
+	e.preventDefault();
+});
+var lnkSubmit = document.getElementById('lnkSubmit');
+lnkSubmit.addEventListener('click', function(e) {
+	document.forms.myForm.submit();
+	e.preventDefault();
+});
+document.forms.myForm.addEventListener('reset', function(e) {
+	inizializzaForm();
+	e.preventDefault();
+});
+var lnkReset = document.getElementById('lnkReset');
+lnkReset.addEventListener('click', function(e) {
+	document.forms.myForm.reset();
+	e.preventDefault();
+});
+var lnkReset = document.getElementById('lnkReset');
+lnkReset.addEventListener('click', function(e) {
+	document.forms.myForm.reset();
+	e.preventDefault();
+});
+<form name="myForm">
+	<p><label>
+	Quantità: <input type="number" id="txtQta" value="0" min="0" required />
+	</label></p>
+	<p><label>
+	Prezzo:   <input type="number" id="txtPrezzo" value="0" min="0" required />
+	</label></p>
+	<p><label>
+	IVA:      <input type="number" id="txtIVA" value="0" min="4" required />
+	</label>%</p>
+	<p><button id="btnCalcola">Calcola</button> Totale: <span id="spnTotale"></span></p>
+</form>
+var myForm = document.forms.myForm;
+myForm.addEventListener("submit", function(e) {
+	var spnTotale = document.getElementById("spnTotale");
+	var txtQta = document.getElementById("txtQta");
+	var txtPrezzo = document.getElementById("txtPrezzo");
+	var txtIVA = document.getElementById("txtIVA");
+	spnTotale.innerHTML = (txtQta.valueAsNumber * txtPrezzo.valueAsNumber) +
+                          (txtQta.valueAsNumber * txtPrezzo.valueAsNumber *
+                           txtIVA.valueAsNumber)/100;
+	e.preventDefault();
+});
+var myForm = document.forms.myForm;
+myForm.addEventListener("submit"), function(e) {
+    var spnTotale = document.getElementById("spnTotale");   }
+    
+
+</script>
+</body>

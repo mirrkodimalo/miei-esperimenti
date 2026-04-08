@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    
+
+ <script>
+
+
+String.prototype.padLeft = function(width, char) {
+    var result = this;
+    char = char || " "; // Default allo spazio se char non è fornito
+    
+    if (this.length < width) {
+        // Crea un array vuoto di lunghezza N, lo unisce con il carattere e aggiunge la stringa originale
+        result = new Array(width - this.length + 1).join(char) + this;
+    }
+    return result;
+};
+
+// --- ESEMPI D'USO ---
+
+const testo = "42";
+
+// Usando la tua funzione padLeft
+console.log("Custom padLeft:", testo.padLeft(5, "0")); // Output: "00042"
+
+// Usando il metodo nativo moderno (consigliato per nuovi progetti)
+console.log("Nativo padStart:", testo.padStart(5, "0")); // Output: "00042"
+
+// Esempio con spazio (default)
+console.log("Default spazio :", "Hey".padLeft(10));     // Output: "       Hey"

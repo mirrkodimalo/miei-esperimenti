@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Esempio Tabelle</title>
+</head>
+<body>
+
+<!-- Prima tabella -->
+<table width="450" bgcolor="#00CCFF" cellpadding="10" cellspacing="1">
+    <tr bgcolor="#FFFFFF">
+        <td width="50%"><b>contenuto</b></td>
+        <td width="50%"></td>
+    </tr>
+</table>
+
+<br>
+
+<!-- Seconda tabella -->
+<table width="100" border="1">
+    <tr>
+        <td nowrap>
+            Se non lo vogliamo non va a capo.<br>
+            Qui va a capo.
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<!-- Terza tabella -->
+<table width="200" border="1">
+    <tr>
+        <td width="50%">creami un codice html</td>
+        <td width="50%">contenuto</td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Esempio JavaScript</title>
+
+  <script type="text/javascript">
+    function ciao() {
+      alert("ciao");
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <h2>Prova pulsante</h2>
+
+  <input type="button" value="clicca" onclick="ciao()">
+
+</body>
+</html>

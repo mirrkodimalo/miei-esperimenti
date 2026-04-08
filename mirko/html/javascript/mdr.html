@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+    <script>
+    // 1. Definiamo prima il costruttore/prototipo base
+function persona() {}
+persona.prototype.saluta = function() {
+    return "Ciao, sono " + this.nome;
+};
+
+// 2. Creazione dell'oggetto marioRossi con i descrittori
+var marioRossi = Object.create(persona.prototype, {
+    nome: {
+        value: "Mario",
+        writable: false,      // Non può essere sovrascritto (marioRossi.nome = "Luigi" fallirà)
+        configurable: false   // Non può essere eliminato o modificato il descrittore
+    },
+    cognome: {
+        value: "Rossi",
+        writable: false,
+        configurable: false
+    },
+    indirizzo: {
+        value: "",
+        writable: true,       // Può essere modificato
+        configurable: true    // Può essere eliminato
+    },
+    email: {
+        value: "",
+        writable: true,
+        configurable: true
+    },
+    nomeCompleto: {
+        configurable: true,
+        get: function() { 
+            return this.nome + " " + this.cognome; 
+        }
+    }
+});
+
+// --- TEST E VERIFICHE ---
+
+console.log(marioRossi.nomeCompleto); // Output: "Mario Rossi"
+
+// Proviamo a cambiare il nome (che è writable: false)
+marioRossi.nome = "Luigi"; 
+console.log(marioRossi.nome);         // Output: "Mario" (Il cambio è stato ignorato!)
+
+// Proviamo a cambiare l'indirizzo (che è writable: true)
+marioRossi.indirizzo = "Via Roma 1";
+console.log(marioRossi.indirizzo);    // Output: "Via Roma 1"

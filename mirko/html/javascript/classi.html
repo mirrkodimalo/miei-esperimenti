@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<body>
+
+
+<allert>><button onclick="marioRossi.email = 'mario.rossi@example.com'">Imposta Email</button></allert>
+<allert><button onclick="console.log(marioRossi.email)">Mostra Email</button></allert>
+<allert><button onclick="marioRossi.email = 'invalid-email'">Imposta Email non valida</button></allert>
+<allert><button onclick="console.log(marioRossi.email)">Mostra Email</button></allert>
+<allert><button onclick="console.log(marioRossi instanceof persona)">Controlla istanza</button></allert>
+<allert><input type="text" id="txtNome" placeholder="Nome"></allert>
+<allert><output id="output"></output></allert>
+<var>n = 5;</var>
+<warning><button onclick="console.log(n)">Mostra variabile n</button></warning>
+<area><button onclick="console.log(n)">Mostra variabile n</button></area>
+<base href="https://www.html.it/">
+<button onclick="console.log(n)">Mostra variabile n</button>
+<button onclick="console.log(document.baseURI)">Mostra base URI</button>
+<button onclick="console.log(document.location)">Mostra location</button>
+<button onclick="console.log(document.URL)">Mostra URL</button>
+<button onclick="console.log(document.domain)">Mostra dominio</button>
+<button onclick="console.log(document.referrer)">Mostra referrer</button>   
+<button onclick="console.log(document.title)">Mostra titolo</button>
+<button onclick="console.log(document.characterSet)">Mostra charset</button>
+<button onclick="console.log(document.lastModified)">Mostra data ultima modifica</button>
+<button onclick="console.log(document.readyState)">Mostra stato di caricamento</button>
+<button onclick="console.log(document.cookie)">Mostra cookie</button>
+<button onclick="console.log(document.doctype)">Mostra doctype</button>
+<button onclick="console.log(document.documentElement)">Mostra elemento radice</button>
+<button onclick="console.log(prototipo)">Mostra prototipo</button>
+<button onclick="console.log(myObject.hasOwnProperty('name'))">Controlla hasOwnProperty</button>
+<button onclick="console.log(Reflect.getOwnPropertyDescriptor(myObject, 'name'))">Mostra descrittore proprietà</button>
+<button onclick="console.log(Reflect.has(myObject, 'name'))">Controlla se la proprietà esiste</button>
+<button onclick="console.log(Reflect.ownKeys(myObject))">Mostra chiavi dell'oggetto</button>
+<button onclick="console.log(Reflect.get(myObject, 'name'))">Mostra valore della proprietà</button>
+<button onclick="Reflect.set(myObject, 'name', 'anotherName'); console.log(Reflect.get(myObject, 'name'))">Modifica e mostra valore della proprietà</button>
+<button onclick="console.log(Reflect.deleteProperty(myObject, 'name'))">Elimina proprietà</button>
+<button onclick="console.log(Reflect.getPrototypeOf(myObject))">Mostra prototipo dell'oggetto</button>
+<button onclick="if (Reflect.setPrototypeOf(newObject, myObject)) { console.log(newObject.name); }">Imposta prototipo e mostra proprietà</button>
+<button onclick="Reflect.setPrototypeOf(newObject, true);">Imposta prototipo non valido</button>
+<button onclick="Reflect.preventExtensions(myObject); myObject.id = 123; console.log(myObject);">Prevenire estensioni e testare</button>
+<button onclick="console.log(Reflect.isExtensible(myObject));">Controlla se l'oggetto è estensibile</button>
+<button onclick="var a = Function.prototype.apply.call(sommaExtra, 12, [4, 6]); console.log(a);">Usa apply per somma</button>
+<code><button onclick="var b = Reflect.apply(sommaExtra, 12, [4, 6]); console.log(b);">Usa Reflect.apply per somma</button></code>
+<button onclick="var auto = produciAuto('Fiat', 'Rosso'); console.log(auto);">Produci auto con Object.create</button>
+<button onclick="var auto = produciAuto('Fiat', 'Rosso'); console.log(auto);">Produci auto con Reflect.construct</button>
+<button onclick="var auto = produciAuto('Fiat', 'Rosso'); console.log(auto);">Produci auto con Reflect.construct senza specificare il costruttore</button>
+<button onclick="var personaProxata = new Proxy(persona, handler); var nome = personaProxata.nome; console.log(nome);">Test Proxy per lettura</button>
+<button onclick="var personaProxata = new Proxy(persona, handler); personaProxata.nome = 'Marco'; console.log(persona.nome);">Test Proxy per scrittura</button>
+<button onclick="var personaConValidazione = new Proxy({nome: 'Mario', cognome: 'Rossi'}, validatore); personaConValidazione.nome = '';">Test validazione Proxy con stringa vuota</button>
+<button onclick="var personaConValidazione = new Proxy({nome: 'Mario', cognome: 'Rossi'}, validatore); personaConValidazione.nome = 'Mario1';">Test validazione Proxy con stringa contenente numeri</button>
+<button onclick="var binder = new Binder(); var personaConBinding = binder.bindTo(persona, 'nome', txtNome, 'value'); setTimeout(function() { personaConBinding.nome = 'Marco'; }, 5000);">Test Binder per data binding</button>
+<button onclick="var x = Symbol(); console.log(x); console.log(typeof x); console.log(Symbol() === Symbol());">Test Symbol</button>
+<button onclick="var x = Symbol('mioSimbolo'); console.log(Symbol('mioSimbolo') === Symbol('mioSimbolo')); console.log(x.toString() === 'Symbol(mioSimbolo)');">Test Symbol con descrizione</button>
+<button onclick="var x = Symbol.for('mioSimbolo'); var y = Symbol.for('mioSimbolo'); console.log(x === y); console.log(Symbol.keyFor(x));">Test Symbol.for e Symbol.keyFor</button>
+<button onclick="var giorniDellaSettimana = { lunedi: 1, martedi: 2, mercoledi: 3, giovedi: 4, venerdi: 5, sabato: 6, domenica: 7 }; function isGiornoLavorativo(giorno) { return (giorno != giorniDellaSettimana.sabato && giorno != giorniDellaSettimana.domenica); } console.log(isGiornoLavorativo(giorniDellaSettimana.lunedi)); console.log(isGiornoLavorativo(giorniDellaSettimana.sabato)); console.log(isGiornoLavorativo(giorniDellaSettimana.domenica));">Test funzione isGiornoLavorativo</button>
+<button onclick="var giorniDellaSettimana = { lunedi: Symbol(), martedi: Symbol(), mercoledi: Symbol(), giovedi: Symbol(), venerdi: Symbol(), sabato: Symbol(), domenica: Symbol() }; console.log(giorniDellaSettimana);">Test oggetto con chiavi simboliche</button>
+<button onclick="var item = new Item(); item.dataControllo = new Date(); console.log(item.dataControllo);">Test proprietà simbolica con data</button>
+<button onclick="var item = new Item(); var dataControllo = Symbol(); item[dataControllo] = new Date(); var props = Object.getOwnPropertySymbols(item); console.log(props.length); console.log(item[props[0]]);">Test proprietà simbolica con Object.getOwnPropertySymbols</button>
+<button onclick="function Collection() {}; Collection.prototype[Symbol.iterator] = function() { var self = this; var i = 0; return { next: function() { if (self[i] !== undefined) { return { value: self[i++] }; } else { return { done: true }; } } } }; var collection = new Collection(); collection[0] = 123; collection[1] = 'test'; collection[2] = 222; for (var x of collection) { console.log(x); }">Test iterazione con Symbol.iterator</button>
+<address>Via Garibaldi, 50 - Roma</address>
+<address>Via Verdi, 100 - Milano</address>
+<address>Via antonelli, 76 - firenze</address>
+<address>Via santa maria, 23 - napoli</address>
+<button onclick="save();">Salva</button>
+<var><button onclick="save();">Salva</button></var>
+<allert><button onclick="save();">Salva</button></alert>
+</allert>
+<allert><button onclick="name = 'Mario';">Nome</button></alert>
+</allert>
+<allert><button onclick="name = 'Rossi';">Cognome</button></alert>
+    <allert><button onclick="email = 'mario.rossi@example.com';">Email</button></alert>
+    </allert>
+</allert>
+<allert><button onclick="indirizzo = 'Via Garibaldi, 50 - Roma';">Indirizzo</button></alert>
+    </allert>
+    <allert><button onclick="console.log(name + ' ' + surname + ' ' + email + ' ' + indirizzo);">Mostra dati</button></alert>
+    </allert>  
+    <var><button onclick="save();">Salva</button></var>
+    <var><button onclick="name = 'Mario';">Nome</button></var>
+    <var><button onclick="surname = 'Rossi';">Cognome</button></var>
+    <var><button onclick="email = 'mario.rossi@example.com';">Email</button></var>
+    <var><button onclick="indirizzo = 'Via Garibaldi, 50 - Roma';">Indirizzo</button></var>
+    <allert><var><button onclick="console.log(name + ' ' + surname + ' ' + email + ' ' + indirizzo);">Mostra dati</button></var></allert>
+    <area><button onclick="save();">Salva</button></area>
+    <area><button onclick="name = 'Mario';">Nome</button></area>
+    <area><button onclick="surname = 'Rossi';">Cognome</button></area>
+    <area><button onclick="email = 'mario.rossi@example.com';">Email</button></area>
+<insert><button onclick="indirizzo = 'Via Garibaldi, 50 - Roma';">Indirizzo</button></insert>
+    <area><button onclick="console.log(name + ' ' + surname + ' ' + email + ' ' + indirizzo);">Mostra dati</button></area>
+    <wallpaper><color> <div id="ffff"></div>  </color></wallpaper>
+<button onclick="console.log(name + ' ' + surname + ' ' + email + ' ' + indirizzo);">Mostra dati</button>
+<button onclick="name = 'Mario';">Nome</button>
+<button onclick="surname = 'Rossi';">Cognome</button>
+<button onclick="email = 'mario.rossi@example.com';">Email</button>
+<button onclick="indirizzo = 'Via Garibaldi, 50 - Roma';">Indirizzo</button>
+<fieldset><legend>Inserisci i tuoi dati</legend>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="surname">Cognome:</label>
+    <input type="text" id="surname" name="surname"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="address">Indirizzo:</label>
+    <input type="text" id="address" name="address"><br><br>
+    <button onclick="save();">Salva</button>
+<warning><button onclick="console.log(pigreco);">Pigreco</button></warning>
+<button> <name>="()" </button>
+
+
+</fieldset>
+function save() {
+    // Funzione per salvare i dati
+    console.log("Dati salvati!");
+}
+
+    <if> (confirm("Vuoi salvare i dati?"))</if> {
+        save();
+    }
+<spacer><button onclick="save();">Salva</button></spacer>
+<datalist><option value="Mario"></option><option value="Rossi"></option><option value="mario.rossi@example.com"></option><option value="Via Garibaldi, 50 - Roma"></option></datalist>
+<if> <data value="100+"><warning><than> pass</than> </warning></data></if>
+<if><data value="100-"><warning><than> pass</than> </warning></data></if>
+<counter>100+</counter><warning><than>log "(pass)"</than> </warning>
+<counter>100-</counter> <warning><than>log "(fail)"</than> </warning>
+<value>pigreco=3.141592</value>
+
+<title>Classi in JavaScript</title>
+<f1>  si prega di premere i seguenti pulsanti per favore  </f1> 
+<f4> grazie </f4>
+
+
+
+
+  <script>
+
+    class persona {
+	constructor(nome, cognome) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = "";
+		this.indirizzo = "";
+	} 
+	mostraNomeCompleto() {
+		return this.nome + " " + this.cognome;
+	}
+}
+var marioRossi = new persona("Mario", "Rossi");
+
+class persona {
+	constructor(nome, cognome) { 
+		this.nome = nome;
+		this.cognome = cognome;
+		this._email = "";
+		this.indirizzo = "";
+	}
+	mostraNomeCompleto() {
+		return this.nome + " " + this.cognome;
+	}
+	get email() { return this._email; }
+	set email(value) { 
+		var emailRegExp = /\w+@\w+\.\w{2,4}/i;
+		if (emailRegExp.test(value)) { 
+			this._email = value;
+		} else { 
+			console.log("Email non valida!");
+		}
+	}
+}
+
+class programmatore extends persona {
+	constructor(nome, cognome) {
+		super(nome, cognome);
+		this.linguaggiConosciuti = [];
+	}
+}
+var marioRossi = new programmatore("Mario", "Rossi");
+marioRossi.linguaggiConosciuti.push("JavaScript");
+
+var persona = {
+	nome: "Mario",
+	cognome: "Rossi",
+	mostraNomeCompleto: function() {
+		return this.nome + " " + this.cognome;
+	}
+};
+var p;
+for (p in persona) { console.log(p); }
+for (p in persona) { console.log(persona[p]); }
+for (p in persona) {
+	if (typeof persona[p] == "function") console.log(p);
+}
+for (p in persona) {
+	if (typeof persona[p] != "function") console.log(p);
+}
+'propietà' in oggetto
+if('nome' in persona) {
+    console.log(persona.nome);
+} else {
+    console.log("L'oggetto persona non contiene una proprietà 'nome'");
+}
+for (p in persona) {
+	if (typeof persona[p] != "function" && persona.hasOwnProperty(p))
+		console.log(p);
+}
+marioRossi instanceof persona
+var prototipo = Object.getPrototypeOf(marioRossi);
+
+var myObject = Object.create(null);
+myObject.name = "objName";
+console.log(myObject.hasOwnProperty(myObject, "name"));
+Object.prototype.hasOwnProperty.call(myObject, "name");
+Reflect.getOwnPropertyDescriptor(myObject, "name");
+Reflect.has(myObject, "name");
+var myObject = {id: 123, name: "objName"};
+console.log(Reflect.ownKeys(myObject)); //["id", "name"]
+var myObject = {};
+ Reflect.defineProperty(myObject, "name", {
+    value: "objName",
+    writable: true,
+    configurable: true,
+    enumerable: true
+ });
+var myObject = {name: "objName"};
+console.log(Reflect.get(myObject, "name")); // objName
+var myObject = {name: "objName"};
+Reflect.set(myObject, "name", "anotherName");
+console.log(Reflect.get(myObject, "name")); //anotherName
+var myObject = {name: "objName"};
+console.log(Reflect.deleteProperty(myObject, "name")); //true
+var myObject = {name: "objName"};
+console.log(Reflect.getPrototypeOf(myObject)); //Object {}
+var myObject = {
+    name: "objName"
+ };
+ var newObject = {
+    id: 123
+ };
+ if (Reflect.setPrototypeOf(newObject, myObject)) {
+    console.log(newObject.name); //objName
+ }
+Reflect.setPrototypeOf(newObject, true); //Uncaught TypeError:...
+var myObject = {
+    name: "objName"
+ };
+ Reflect.preventExtensions(myObject);
+ myObject.id = 123;
+ console.log(myObject); //Object {name: "objName"}
+var myObject = {name: "objName"};
+Reflect.preventExtensions(myObject);
+console.log(Reflect.isExtensible(myObject)); //false
+function sommaExtra(x, y) {
+    return this + x + y;
+ }
+ var a = Function.prototype.apply.call(sommaExtra, 12, [4, 6]);
+ console.log(a); //22
+ var b = Reflect.apply(sommaExtra, 12, [4, 6]);
+ console.log(b); //22
+class Automobile {
+    constructor(modello, colore) {
+       this.modello = modello;
+       this.colore = colore;
+    }
+ }
+ function produciAuto(modello, colore) {
+    var auto = Object.create(Automobile.prototype);
+    Automobile.call(auto, modello, colore);
+    return auto;
+ }
+function produciAuto(modello, colore) {
+    return Reflect.construct(Automobile, [modello, colore], Automobile);
+}
+function produciAuto(modello, colore) {
+    return Reflect.construct(Automobile, [modello, colore]);
+ }
+var handler = {
+    get(target, propertyName) {
+       console.log("Lettura di " + propertyName);
+       return target[propertyName];
+    },
+    set(target, propertyName, value) {
+       console.log("Assegnamento di " + value + " a " + propertyName);
+       target[propertyName] = value;
+    }
+ };
+var persona = {nome: "Mario", cognome: "Rossi"};
+var personaProxata = new Proxy(persona, handler);
+var nome = personaProxata.nome;
+ //console: Lettura di nome
+ personaProxata.nome = "Marco";
+ //console: Assegnamento di Marco a nome
+ console.log(persona.nome);
+ //console: Marco
+var validatore = {
+    set(target, propertyName, value) {
+       if (propertyName == "nome" || propertyName == "cognome") {
+          if (value == "") throw new Error("Non è possibile assegnare una stringa vuota");
+          let hasNumberRegExp = /\d/;
+          if (hasNumberRegExp.test(value)) throw new Error("La stringa non può contenere numeri");
+       }
+       target[propertyName] = value;
+    }
+ };
+var personaConValidazione = new Proxy({nome: "Mario", cognome: "Rossi"}, validatore);
+personaConValidazione.nome = "";
+//Uncaught Error: Non è possibile assegnare una stringa vuota
+personaConValidazione.nome = "Mario1"
+//Uncaught Error: La stringa non può contenere numeri
+class Binder {
+    bindTo(dataSourceObj, dataSourceProperty, dataTargetObj, dataTargetProperty) {
+       var bindHandler = {
+          set: function(target, property, newValue) {
+             if (property == dataSourceProperty) {
+                target[dataSourceProperty] = newValue;
+                dataTargetObj[dataTargetProperty] = newValue;
+             }
+          }
+       };
+       return new Proxy(dataSourceObj, bindHandler);
+    }
+ }
+var persona = {
+    nome: "Mario",
+    cognome: "Rossi"
+ };
+ var txtNome = document.getElementById("txtNome");
+ var binder = new Binder();
+ var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
+ setTimeout(function() {
+    personaConBinding.nome = "Marco";
+ }, 5000);
+var x = Symbol();
+console.log(x);	//risultato: Symbol()
+console.log(typeof x);	//risultato: symbol
+console.log(Symbol() === Symbol());	//risultato: false
+var x = Symbol("mioSimbolo");
+console.log(Symbol("mioSimbolo") === Symbol("mioSimbolo")); // risultato: false
+var x = Symbol("mioSimbolo");
+console.log(x.toString() === "Symbol(mioSimbolo)"); //risultato: true
+var x = Symbol.for("mioSimbolo");
+var x = Symbol.for("mioSimbolo");
+var y = Symbol.for("mioSimbolo");
+console.log(x === y); // risultato: true
+var x = Symbol.for("mioSimbolo");
+console.log(Symbol.keyFor(x)); //risultato: mioSimbolo
+var item = { descrizione: "Prodotto A", prezzo: 24.5 };
+item.id = nuovoId();
+item.id = Symbol();
+var giorniDellaSettimana = {
+	lunedi:    1,
+	martedi:   2,
+	mercoledi: 3,
+	giovedi:   4,
+	venerdi:   5,
+	sabato:    6,
+	domenica:  7
+};
+function isGiornoLavorativo(giorno) {
+	return (giorno != giorniDellaSettimana.sabato && giorno != giorniDellaSettimana.domenica);
+}
+console.log(isGiornoLavorativo(giorniDellaSettimana.lunedi)); //true
+console.log(isGiornoLavorativo(giorniDellaSettimana.sabato)); //false
+console.log(isGiornoLavorativo(3));    // true
+console.log(isGiornoLavorativo(2+5));  //false
+var giorniDellaSettimana = {
+	lunedi:    Symbol(),
+	martedi:   Symbol(),
+	mercoledi: Symbol(),
+	giovedi:   Symbol(),
+	venerdi:   Symbol(),
+	sabato:    Symbol(),
+	domenica:  Symbol()
+};
+var item = new Item();
+item.dataControllo = new Date();
+var item = new Item();
+var dataControllo = Symbol();
+item[dataControllo] = new Date();
+var props = Object.getOwnPropertySymbols(item);	
+console.log(props.length);    // risultato: 1
+console.log(item[props[0]]);  // risultato: valore della data assegnata
+function Collection() {};
+var collection = new Collection();
+collection[0] = 123;
+collection[1] = "test";
+collection[2] = 222;
+var props = Object.getOwnPropertyNames(collection);
+for (var i = 1; i < props.length; i++ ) { 
+	console.log(collection[props[i]]);
+}
+function Collection() {};
+Collection.prototype[Symbol.iterator] = function() {
+	var self = this;
+	var i = 0;
+	return {
+		next: function() {
+			if (self[i] !== undefined) {
+				return { value: self[i++] };
+			} else {
+				return { done: true };
+			}
+		}
+	}
+}
+for (var x of collection) {
+	console.log(x);
+}
+
+{nome: "Mario", cognome; "Rossi"}
+'{nome: "Mario", cognome: "Rossi"}'
+[1, "test", true]
+'[1, "test", true]'
+var marioRossi = JSON.parse('{nome: "Mario", cognome: "Rossi"}');
+var jsonMarioRossi = JSON.stringify({nome: "Mario", cognome: "Rossi"});
+function persona() {
+	this.nome = "";
+	this.cognome = "";
+	this.email = "";
+	this.mostraNomeCompleto = function() {
+        return this.nome + " " + this.cognome;
+    };
+}
+var marioRossi = new persona();
+marioRossi.nome = "Mario";
+marioRossi.cognome = "Rossi";
+marioRossi.email = "mario.rossi@html.it";
+var giuseppeVerdi = new persona();
+giuseppeVerdi.nome = "Giuseppe";
+giuseppeVerdi.cognome = "Verdi";
+giuseppeVerdi.email = "giuseppe.verdi@html.it";
+var marco = new persona();
+marco.nome = "Marco";
+marco.cognome = "Rossi";
+marco.indirizzo = "Via antonelli, 76 - firenze";
+marco.email = "marco.rossi@html.it";
+var magno = new persona();
+magno.nome = "luciano";
+magno.cognome = "mangoli";
+magno.indirizzo = "Via santa maria, 23 - napoli";
+magno.email = "luciano.mangoli@html.it";
+
+function persona(nome, cognome) {
+	var privNome = nome;
+	var privCognome = cognome;
+	var privEmail = "";
+	this.nome = privNome;
+	this.cognome = privCognome;
+	this.email = privEmail;
+	this.mostraNomeCompleto = function() {
+		console.log(this.nome+' '+this.cognome);
+	};
+}
+var marioRossi = new persona("Mario", "Rossi");
+var giuseppeVerdi = new persona("Giuseppe", "Verdi");
+var marco = new persona("Marco", "Rossi");
+marco.indirizzo = "Via antonelli, 76 - firenze";
+marco.email = "marco.rossi@html.it";
+function persona(nome, cognome) {
+	var privNome = nome;
+	var privCognome = cognome;
+	var privEmail = "";
+	function isValidEmail(value) {
+		return true; // è solo per prova, non verifica nulla
+	}
+	this.nome = privNome;
+	this.cognome = privCognome;
+	this.getEmail = function() { return privEmail; };
+    this.setEmail = function(value) {
+				if (isValidEmail(value)) privEmail = value;
+	};
+	this.mostraNomeCompleto = function() {
+				console.log(this.nome+' '+this.cognome+' '+this.getEmail());
+	};
+}
+function persona(nome, cognome) {
+	var privNome = nome;
+	var privCognome = cognome;
+	this.nome = privNome;
+	this.cognome = privCognome;
+}
+persona.prototype.mostraNomeCompleto = function() {return this.nome + this.cognome;};
+persona.prototype.calcolaCodiceFiscale = function() {
+    var codiceFiscale = this.cognome.substr(0, 3).toUpperCase() + this.nome.substr(0, 3).toUpperCase() + "VIA";
+    return codiceFiscale;
+};
+var marioRossi = {
+	nome: "Mario",
+	cognome: "Rossi",
+	indirizzo: {
+		via: "Via Garibaldi",
+		numero: "11",
+		comune: "Roma",
+		provincia: "RM"
+	}
+};
+function programmatore() {
+	this.linguaggiConosciuti = [];
+}
+programmatore.prototype = new persona();
+var marioRossi = new programmatore();
+function programmatore() {
+	persona.call(this);
+	this.linguaggiConosciuti = [];
+}
+var marioRossi = new programmatore();
+function persona(nome, cognome) {
+	this.nome = nome;
+	this.cognome = cognome;
+	this.genitore = null;
+}
+var marioRossi = new persona("Mario", "Rossi");
+var giuseppeRossi = new persona("Giuseppe", "Rossi");
+marioRossi.genitore = giuseppeRossi;
+
+function Add(x, y) {
+	return x + y;
+}
+function persona(nome, cognome) {
+	this.nome = nome;
+	this.cognome = cognome;
+	this.genitore = null;
+}
+var marioRossi = new persona("Mario", "Rossi");
+var giuseppeRossi = new persona("Giuseppe", "Rossi");
+marioRossi.genitore = giuseppeRossi;
+marioRossi.genitore  =  giuseppeRossi;
+giuliaRossi.genitore =  giuseppeRossi;
+marcoRossi.genitore  =  giuseppeRossi;
+try {
+	// Blocco di codice
+} catch(e) {
+	// Gestione dell'eccezione
+}
+var x = 0;
+try {
+	func();
+	x = x + 1;
+} catch(e) {
+	console.log(e.message);  // func is not defined
+}
+console.log(x);  //0
+var x = 0;
+try {
+	func();
+	x = x + 1;
+} catch(e) {
+	console.log(e.message);  // func is not defined
+} finally {
+	x = x - 1;
+}
+console.log(x);  // -1
+try {
+	//Blocco di codice
+} catch(e) {
+	switch (e.name) {
+		case "ReferenceError":
+			console.log("Variabile o funzione non definita");
+			break;
+		case "TypeError":
+			console.log("Non è stato utilizzato il tipo di dato previsto");
+			break;
+		default:
+            console.log("Errore sconosciuto: " + e.message);
+	}
+}
+function convalidaEmail(value) {
+	var emailRegExp = /\w+@\w+\.\w{2,4}/i;
+	if (emailRegExp.test(value)) {
+		return true;
+	} else {
+		throw new Error("Email non valida!");
+	}
+}
+var singleton = {
+	proprieta: "abc",
+	metodo: function() {
+		// ...
+	}
+};
+singleton.metodo();
+var singleton = (function(){
+	var instance;
+	return {
+		getInstance: function() {
+			if (!instance) {
+				instance = { proprieta: "abc", metodo: function() { //... } };
+			}
+		
+		} 
+	};
+}}})();
+
+
+var mySingleton = singleton.getInstance();
+console.log(mySingleton.proprieta);	 //"abc"       
+
+var veicoloFactory = {
+	creaVeicolo: function(opzioni) {
+		var veicolo;
+		if (opzioni && opzioni.length) {
+			switch (opzioni.tipo) {
+				case "auto":
+					veicolo = new Automobile(opzioni);
+					break;
+				case "moto":
+					veicolo = new Moto(opzioni);
+					break;
+				case "camion":
+					veicolo = new Camion(opzioni);
+					break;
+			}
+		}
+	}
+};
+
+var myAutomobile = veicoloFactory.creaVeicolo({tipo: "auto", colore: "rosso", modello: "berlina"});
+var myAutobus = veicoloFactory.creaVeicolo({tipo: "bus", colore: "giallo"});
+var modulo = (function() {
+	function metodoPrivato() {
+		//...
+	}
+	return {
+		metodoPubblico: function() {
+			metodoPrivato();
+		}
+	}
+})();
+
+<PaymentMethodChangeEvent><button onclick="modulo.metodoPubblico();">Chiama metodo pubblico</button></PaymentMethodChangeEvent>
+modulo.metodoPubblico();
+var altroModulo = (function() {
+	//...
+})();
+var modulo = (function(moduloEsterno) {
+	function metodoPrivato() {
+		moduloEsterno.metodo();
+		//...
+	}
+	return {
+		metodoPubblico: function() {
+			metodoPrivato();
+		}
+	}
+})(altroModulo);
+export function somma(x, y) {
+	return x + y;
+}
+function prodotto(x, y) {
+	return x*y;
+} 
+export function somma(x, y) {
+	return x + y;
+}
+function prodotto(x, y) {
+	return x*y;
+} 
+export function somma(x, y) {
+	return x + y;
+} 
+
+export class Circonferenza {
+	constructor(raggio) {
+		this.raggio = raggio;
+	}
+}
+function prodotto(x, y) {
+	return x * y;
+} 
+function somma(x, y) {
+	return x + y;
+} 
+const pigreco = 3.141592; 
+class Circonferenza {
+	constructor(raggio) {
+		this.raggio = raggio;
+	}
+} 
+export {somma, pigreco, Circonferenza};
+import {somma} from "mioModulo"; 
+console.log(somma(2, 5));
+import {somma, pigreco} from "mioModulo";
+console.log(somma(2, 5));
+console.log(pigreco);
+import * as mioModulo from "mioModulo";
+console.log(mioModulo.somma(2, 5));
+import {somma, pigreco as pigrecopiupreciso} from "mioModulo"; 
+
+import * as Matematica from "mioModulo"; 
+console.log(Matematica.somma(2, 5));
+
+function prodotto(x, y) {
+ 	return x*y;
+} 
+export default function (x, y) {
+ 	return x + y;
+} 
+
+class Circonferenza {
+ 	constructor(raggio) {
+ 		this.raggio = raggio;
+ 	}
+} 
+export {pigreco, Circonferenza};
+import somma from "mioModulo";
+console.log(somma(2, 5));
+import addizione from "mioModulo";
+var vecchioObj = function() {
+	this.metodo = function (x) { //... };
+}};
+var obj = new vecchioObj(); obj.metodo(123);
+var nuovoObj = function() {
+	this.nuovoMetodo = function(x) { //... };
+}};
+var vecchioObj = function() {
+	var myObj = new nuovoObj();
+	this.metodo = myObj.nuovoMetodo;
+};
+var cilindro = function() {
+	this.calcolaArea = function(raggio, altezza) {
+		var areaBase = cerchio.calcolaArea(raggio);
+		var circonferenzaBase = cerchio.calcolaCirconferenza(raggio);
+		var areaLaterale = rettangolo.calcolaarea( circonferenzaBase, altezza);
+		return (areaBase * 2) + areaLaterale;
+	};
+}
+var model = { nome: "Mario", cognome: "Rossi" }; 
+var view = {
+		txtNome: document.getElementById("txtNome"),  
+
+		txtCognome: document.getElementById("txtCognome"),
+
+		btnSalva: document.getElementById("btnSalva"),
+}; 
+var controller = {
+	init: function() {
+		view.txtNome.value = model.nome;
+		view.txtCognome.value = model.cognome;
+		view.btnSalva.onclick = controller.salva;
+	},
+	salva: function() {
+		model.nome = view.txtNome.value;
+		model.cognome = view.txtCognome.value;
+		//invia il model al server
+		invia(model);
+	}
+};
+var centraleMessaggi = function() {
+	this.listaObserver = [];
+};
+centraleMessaggi.prototype = {
+	subscribe: function(callback) {
+		this.listaObserver.push(callback);
+	}, 
+	unsubscribe: function(callback) {
+		for (var i = 0; i < this.listaObserver.length; i++) {
+			if (this.listaObserver[i] === callback) {
+				this.listaObserver.splice(i, 1);
+				return;
+			}
+		}
+	},
+	nuovoMessaggio: function(msg) {
+		for (var i = 0; i < this.listaObserver.length; i++) {
+			this.listaObserver[i](msg);
+		}
+	}
+};
+var cm = new centraleMessaggi(); 
+cm.subscribe(function(msg) {
+	//...
+});
+cm.nuovoMessaggio("salve");
+getMessaggio(function(msg) { console.log(msg.contenuto); });
+getMessaggio(
+	function(msg) {
+		sendMessaggio( msg, "utente@dominio.com",
+			function()    { console.log("Messaggio inoltrato"); },
+			function(err) { console.log("Si è verificato un errore: " + err.message); } );
+	},
+	function(err) { console.log("Si è verificato un errore: " + err.message); }
+);
+var promise = getMessaggio();
+promise.done(sendMessaggio).done(function() {
+	console.log("Messaggio inoltrato");
+}); 
+promise.fail(function(err) {
+	console.log("Si è verificato un errore: " + err.message);
+});
+function logDecorator(f) {
+   return function() {
+      console.log("Inizio esecuzione");
+      var result = f.apply(this, arguments);
+      console.log("Fine esecuzione");
+      return result;
+   };
+}
+window.alert("Ciao!   premi ok per free vbuks");
+var nome = window.prompt("Inserisci il tuo nome");
+if (nome != null) {
+	// ...
+}
+window.open("http://www.html.it", "myWindow");
+window.open("http://www.html.it", "myWindow", "menubar=no,toolbar=no,status=no, height=400,width=600,top=150,left=150");
+var myTimer = setTimeout(function() {console.log("test")}, 5000);
+clearTimeout(myTimer);
+var myTimer = setInterval(function() {console.log("test")}, 5000);
+clearInterval(myTimer);
+var x = 0;
+var myTimer = setInterval(function() { x++; console.log(x); }, 1000);
+window.history.back();
+window.history.go(-3);
+window.history.back();
+window.history.go(-1);
+https //www.html.it:8080/articoli/articolo.php?id=123#paragrafo
+function getParameters() {
+	var paramData = [];
+	var parameters = {};
+	var param;
+	if (window.location.search.length > 0) {
+		paramData = window.location.search.split("?")[1].split("&");
+		for(var i = 0; i < paramData.length; i++) {
+			param = paramData[i].split("=");
+			parameters[param[0]] = param[1];
+		}
+	}
+	return parameters;
+}
+https //www.html.it/articoli/articolo.php?id=123&x=567
+{id: 123, x, 567}
+window.location.href = "http://www.html.it";
+window.location.assign("http://www.html.it");
+window.location.reload(true);
+window.location.replace("http://www.html.it");
+function getBrowserName() {
+  var browserNames = ["Chrome", "Firefox", "MSIE", "Opera", "Safari"];
+  for(var i in browserNames) {
+  if (window.navigator.userAgent.indexOf(browserNames[i]) > -1) break
+  }
+  return browserNames[i];
+}
+
+console.log(window.navigator.cookieEnabled);
+console.log(window.navigator.onLine);
+console.log(window.navigator.language);
+</script>
+</head>
+</body>
